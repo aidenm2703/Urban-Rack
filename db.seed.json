@@ -1,0 +1,109 @@
+{
+  "products": [
+    {
+      "id": "prod-1",
+      "name": "Hoodie Oversize Essential",
+      "description": "Buzo con capucha oversize confeccionado en algodón frizado de alta calidad.",
+      "price": 45.0,
+      "category": "Buzos",
+      "featured": true,
+      "image": "/assets/hero.png",
+      "variants": [
+        { "id": "var-1", "size": "M", "color": "Negro", "stock": 15 },
+        { "id": "var-2", "size": "L", "color": "Negro", "stock": 10 },
+        { "id": "var-3", "size": "M", "color": "Gris", "stock": 8 }
+      ]
+    },
+    {
+      "id": "prod-2",
+      "name": "Remera Streetwear Graphic",
+      "description": "Remera de corte relajado con estampado gráfico urbano en pecho y espalda.",
+      "price": 25.0,
+      "category": "Remeras",
+      "featured": true,
+      "image": "/assets/hero.png",
+      "variants": [
+        { "id": "var-4", "size": "S", "color": "Blanco", "stock": 20 },
+        { "id": "var-5", "size": "M", "color": "Blanco", "stock": 18 },
+        { "id": "var-6", "size": "L", "color": "Negro", "stock": 12 }
+      ]
+    }
+  ],
+  "categories": [
+    { "id": "cat-1", "name": "Buzos", "slug": "buzos" },
+    { "id": "cat-2", "name": "Remeras", "slug": "remeras" },
+    { "id": "cat-3", "name": "Pantalones", "slug": "pantalones" },
+    { "id": "cat-4", "name": "Accesorios", "slug": "accesorios" }
+  ],
+  "inventory_movements": [
+    {
+      "id": "mov-1",
+      "productId": "prod-1",
+      "variantId": "var-1",
+      "type": "ENTRADA",
+      "quantity": 15,
+      "date": "2026-09-01T10:00:00.000Z",
+      "reason": "Ingreso de proveedor inicial"
+    }
+  ],
+  "layaways": [
+    {
+      "id": "lay-1",
+      "customerName": "Juan Pérez",
+      "customerPhone": "+5491100001111",
+      "items": [
+        { "productId": "prod-1", "variantId": "var-1", "quantity": 1, "price": 45.0 }
+      ],
+      "total": 45.0,
+      "balance": 25.0,
+      "status": "ACTIVO",
+      "createdAt": "2026-09-02T15:30:00.000Z",
+      "installments": [
+        { "id": "inst-1", "amount": 20.0, "date": "2026-09-02T15:30:00.000Z", "method": "Efectivo" }
+      ]
+    }
+  ],
+  "sales": [
+    {
+      "id": "sale-1",
+      "date": "2026-09-03T18:20:00.000Z",
+      "items": [
+        { "productId": "prod-2", "variantId": "var-4", "quantity": 1, "price": 25.0 }
+      ],
+      "total": 25.0,
+      "paymentMethod": "Efectivo",
+      "sellerId": "user-2"
+    }
+  ],
+  "cashbox": {
+    "status": "OPEN",
+    "openedAt": "2026-09-04T08:00:00.000Z",
+    "initialBalance": 100.0,
+    "currentBalance": 125.0,
+    "totalCashSales": 25.0,
+    "totalCardSales": 0.0
+  },
+  "returns": [],
+  "users": [
+    {
+      "id": "user-1",
+      "name": "Administrador",
+      "email": "admin@urbanrack.com",
+      "role": "admin"
+    },
+    {
+      "id": "user-2",
+      "name": "Vendedor 1",
+      "email": "vendedor@urbanrack.com",
+      "role": "vendedor"
+    }
+  ],
+  "business_info": {
+    "name": "Urban-Rack",
+    "phone": "+54 9 11 1234-5678",
+    "whatsapp": "5491112345678",
+    "address": "Av. Corrientes 1234, CABA, Argentina",
+    "schedule": "Lunes a Sábado de 10:00 a 20:00 hs",
+    "policies": "Cambios dentro de los 30 días con ticket de compra y etiqueta original."
+  }
+}
