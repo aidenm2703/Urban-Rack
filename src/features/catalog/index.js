@@ -1,0 +1,5 @@
+export * from './use-products'
+export * from './products-service'
+export * from './components/search-bar'
+export * from './components/filters'
+export * from './components/product-card'
