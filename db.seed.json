@@ -2,38 +2,116 @@
   "products": [
     {
       "id": "prod-1",
-      "name": "Hoodie Oversize Essential",
-      "description": "Buzo con capucha oversize confeccionado en algodón frizado de alta calidad.",
-      "price": 45.0,
-      "category": "Buzos",
+      "name": "Hoodie Heavyweight Boxy Fit",
+      "brand": "URBAN RACK LAB",
+      "description": "Buzo con capucha confeccionado en algodón pesado de 450 gsm. Corte boxy fit con hombros caídos y capucha doble capa sin cordones.",
+      "price": 58.0,
+      "category": "Hoodies",
       "featured": true,
-      "image": "/assets/hero.png",
+      "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80",
+      "secondaryImage": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&q=80",
+      "isNew": true,
       "variants": [
-        { "id": "var-1", "size": "M", "color": "Negro", "stock": 15 },
-        { "id": "var-2", "size": "L", "color": "Negro", "stock": 10 },
-        { "id": "var-3", "size": "M", "color": "Gris", "stock": 8 }
+        { "id": "var-1", "size": "M", "color": "Negro", "stock": 12 },
+        { "id": "var-2", "size": "L", "color": "Negro", "stock": 8 },
+        { "id": "var-3", "size": "XL", "color": "Negro", "stock": 3 },
+        { "id": "var-4", "size": "M", "color": "Gris", "stock": 5 }
       ]
     },
     {
       "id": "prod-2",
-      "name": "Remera Streetwear Graphic",
-      "description": "Remera de corte relajado con estampado gráfico urbano en pecho y espalda.",
-      "price": 25.0,
-      "category": "Remeras",
+      "name": "Sneakers Retro High 'Acid Shadow'",
+      "brand": "KICKS DIVISION",
+      "description": "Zapatillas de caña alta inspiradas en los clásicos del básquet de los 80s. Cuero premium microperforado y entresuela vintage desgastada.",
+      "price": 135.0,
+      "category": "Sneakers",
       "featured": true,
-      "image": "/assets/hero.png",
+      "image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80",
+      "secondaryImage": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80",
+      "isNew": true,
       "variants": [
-        { "id": "var-4", "size": "S", "color": "Blanco", "stock": 20 },
-        { "id": "var-5", "size": "M", "color": "Blanco", "stock": 18 },
-        { "id": "var-6", "size": "L", "color": "Negro", "stock": 12 }
+        { "id": "var-5", "size": "40", "color": "Negro/Rojo", "stock": 6 },
+        { "id": "var-6", "size": "41", "color": "Negro/Rojo", "stock": 9 },
+        { "id": "var-7", "size": "42", "color": "Negro/Rojo", "stock": 4 },
+        { "id": "var-8", "size": "43", "color": "Negro/Rojo", "stock": 2 }
+      ]
+    },
+    {
+      "id": "prod-3",
+      "name": "Remera Oversize 'Tokyo Underground'",
+      "brand": "SUB-CULTURE",
+      "description": "Remera manga corta confeccionada en algodón peinado 24/1. Estampado serigráfico de alta densidad en espalda y pecho.",
+      "price": 28.0,
+      "category": "Oversize",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
+      "secondaryImage": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&q=80",
+      "isNew": false,
+      "variants": [
+        { "id": "var-9", "size": "S", "color": "Blanco", "stock": 14 },
+        { "id": "var-10", "size": "M", "color": "Blanco", "stock": 10 },
+        { "id": "var-11", "size": "L", "color": "Blanco", "stock": 2 }
+      ]
+    },
+    {
+      "id": "prod-4",
+      "name": "Pantalón Cargo Tactical Ripstop",
+      "brand": "URBAN RACK LAB",
+      "description": "Pantalón cargo de corte holgado con múltiples bolsillos funcionales con fuelle y tiras de ajuste en tobillos.",
+      "price": 64.0,
+      "category": "Cargos",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=80",
+      "secondaryImage": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&q=80",
+      "isNew": true,
+      "variants": [
+        { "id": "var-12", "size": "M", "color": "Verde Militar", "stock": 8 },
+        { "id": "var-13", "size": "L", "color": "Verde Militar", "stock": 0 },
+        { "id": "var-14", "size": "M", "color": "Negro", "stock": 7 },
+        { "id": "var-15", "size": "L", "color": "Negro", "stock": 11 }
+      ]
+    },
+    {
+      "id": "prod-5",
+      "name": "Chaqueta Bomber MA-1 Vintage",
+      "brand": "STREET ICONS",
+      "description": "Chaqueta de vuelo clásica con forro interior naranja térmico, bolsillo utilitario con cremallera en manga y ribete acanalado.",
+      "price": 89.0,
+      "category": "Jackets",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1548883354-7622d03aca27?w=800&q=80",
+      "secondaryImage": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
+      "isNew": false,
+      "variants": [
+        { "id": "var-16", "size": "M", "color": "Negro", "stock": 3 },
+        { "id": "var-17", "size": "L", "color": "Negro", "stock": 1 },
+        { "id": "var-18", "size": "XL", "color": "Negro", "stock": 0 }
+      ]
+    },
+    {
+      "id": "prod-6",
+      "name": "Gorra 5-Panel Nylon Waterproof",
+      "brand": "ACCESSORIES",
+      "description": "Cap de estructura suave y 5 paneles en tejido técnico ripstop impermeable con cierre de broche trasero ajustable.",
+      "price": 22.0,
+      "category": "Accesorios",
+      "featured": false,
+      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80",
+      "secondaryImage": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=800&q=80",
+      "isNew": true,
+      "variants": [
+        { "id": "var-19", "size": "Único", "color": "Negro", "stock": 25 },
+        { "id": "var-20", "size": "Único", "color": "Beige", "stock": 18 }
       ]
     }
   ],
   "categories": [
-    { "id": "cat-1", "name": "Buzos", "slug": "buzos" },
-    { "id": "cat-2", "name": "Remeras", "slug": "remeras" },
-    { "id": "cat-3", "name": "Pantalones", "slug": "pantalones" },
-    { "id": "cat-4", "name": "Accesorios", "slug": "accesorios" }
+    { "id": "cat-1", "name": "Sneakers", "slug": "sneakers" },
+    { "id": "cat-2", "name": "Hoodies", "slug": "hoodies" },
+    { "id": "cat-3", "name": "Oversize", "slug": "oversize" },
+    { "id": "cat-4", "name": "Cargos", "slug": "cargos" },
+    { "id": "cat-5", "name": "Jackets", "slug": "jackets" },
+    { "id": "cat-6", "name": "Accesorios", "slug": "accesorios" }
   ],
   "inventory_movements": [
     {
@@ -52,14 +130,14 @@
       "customerName": "Juan Pérez",
       "customerPhone": "+5491100001111",
       "items": [
-        { "productId": "prod-1", "variantId": "var-1", "quantity": 1, "price": 45.0 }
+        { "productId": "prod-1", "variantId": "var-1", "quantity": 1, "price": 58.0 }
       ],
-      "total": 45.0,
-      "balance": 25.0,
+      "total": 58.0,
+      "balance": 28.0,
       "status": "ACTIVO",
       "createdAt": "2026-09-02T15:30:00.000Z",
       "installments": [
-        { "id": "inst-1", "amount": 20.0, "date": "2026-09-02T15:30:00.000Z", "method": "Efectivo" }
+        { "id": "inst-1", "amount": 30.0, "date": "2026-09-02T15:30:00.000Z", "method": "Efectivo" }
       ]
     }
   ],
@@ -68,9 +146,9 @@
       "id": "sale-1",
       "date": "2026-09-03T18:20:00.000Z",
       "items": [
-        { "productId": "prod-2", "variantId": "var-4", "quantity": 1, "price": 25.0 }
+        { "productId": "prod-2", "variantId": "var-5", "quantity": 1, "price": 135.0 }
       ],
-      "total": 25.0,
+      "total": 135.0,
       "paymentMethod": "Efectivo",
       "sellerId": "user-2"
     }
@@ -79,8 +157,8 @@
     "status": "OPEN",
     "openedAt": "2026-09-04T08:00:00.000Z",
     "initialBalance": 100.0,
-    "currentBalance": 125.0,
-    "totalCashSales": 25.0,
+    "currentBalance": 235.0,
+    "totalCashSales": 135.0,
     "totalCardSales": 0.0
   },
   "returns": [],

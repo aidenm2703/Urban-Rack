@@ -1,24 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { productsService } from './products-service'
 import { useDebounce } from '@/shared/hooks/use-debounce'
 
+const INITIAL_FILTERS = {
+  category: '',
+  size: '',
+  color: '',
+  onlyInStock: false,
+  sortBy: 'featured',
+}
+
 export function useProducts() {
-  const [products, setProducts] = useState([])
+  const [allProducts, setAllProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
-  const debouncedSearch = useDebounce(searchTerm, 300)
+  const [filters, setFilters] = useState(INITIAL_FILTERS)
+
+  const debouncedSearch = useDebounce(searchTerm, 250)
 
   useEffect(() => {
     let isMounted = true
     setLoading(true)
 
-    const query = debouncedSearch ? `?q=${encodeURIComponent(debouncedSearch)}` : ''
     productsService
-      .getAll(query)
+      .getAll()
       .then((data) => {
         if (isMounted) {
-          setProducts(Array.isArray(data) ? data : [])
+          setAllProducts(Array.isArray(data) ? data : [])
           setError(null)
         }
       })
@@ -32,13 +41,73 @@ export function useProducts() {
     return () => {
       isMounted = false
     }
-  }, [debouncedSearch])
+  }, [])
+
+  // Filtrado y Ordenamiento Reactivo
+  const filteredProducts = useMemo(() => {
+    return allProducts
+      .filter((product) => {
+        // Filtro por término de búsqueda
+        if (debouncedSearch) {
+          const term = debouncedSearch.toLowerCase()
+          const matchName = product.name?.toLowerCase().includes(term)
+          const matchCategory = product.category?.toLowerCase().includes(term)
+          const matchBrand = product.brand?.toLowerCase().includes(term)
+          if (!matchName && !matchCategory && !matchBrand) return false
+        }
+
+        // Filtro por categoría
+        if (filters.category && product.category?.toLowerCase() !== filters.category.toLowerCase()) {
+          return false
+        }
+
+        // Filtro por talle
+        if (filters.size) {
+          const hasSize = product.variants?.some(
+            (v) => v.size?.toLowerCase() === filters.size.toLowerCase() && (v.stock || 0) > 0
+          )
+          if (!hasSize) return false
+        }
+
+        // Filtro por color
+        if (filters.color) {
+          const hasColor = product.variants?.some(
+            (v) => v.color?.toLowerCase().includes(filters.color.toLowerCase())
+          )
+          if (!hasColor) return false
+        }
+
+        // Filtro solo stock disponible
+        if (filters.onlyInStock) {
+          const totalStock = product.variants?.reduce((sum, v) => sum + (v.stock || 0), 0) ?? 0
+          if (totalStock <= 0) return false
+        }
+
+        return true
+      })
+      .sort((a, b) => {
+        if (filters.sortBy === 'price-low') return a.price - b.price
+        if (filters.sortBy === 'price-high') return b.price - a.price
+        if (filters.sortBy === 'name') return a.name.localeCompare(b.name)
+        // 'featured' por defecto
+        return (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
+      })
+  }, [allProducts, debouncedSearch, filters])
+
+  const clearFilters = () => {
+    setFilters(INITIAL_FILTERS)
+    setSearchTerm('')
+  }
 
   return {
-    products,
+    products: filteredProducts,
+    totalProductsCount: allProducts.length,
     loading,
     error,
     searchTerm,
     setSearchTerm,
+    filters,
+    setFilters,
+    clearFilters,
   }
 }
