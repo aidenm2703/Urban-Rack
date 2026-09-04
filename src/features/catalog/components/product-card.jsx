@@ -51,7 +51,7 @@ export function ProductCard({ product }) {
         <Link to={`/producto/${product.id}`} className={styles.productTitle}>
           {product.name}
         </Link>
-        <div className={styles.priceTag}>${product.price.toFixed(2)}</div>
+        <div className={styles.priceTag}>${product.price?.toFixed(2)}</div>
 
         {/* Talles disponibles */}
         {product.variants && product.variants.length > 0 && (

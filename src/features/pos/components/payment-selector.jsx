@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function PaymentSelector({ total = 0, onMethodChange }) {
+export function PaymentSelector({ _total = 0, onMethodChange }) {
   const methods = ['Efectivo', 'Tarjeta Débito', 'Tarjeta Crédito', 'Transferencia']
   const [selectedMethod, setSelectedMethod] = useState('Efectivo')
 

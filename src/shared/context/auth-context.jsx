@@ -21,10 +21,9 @@ export function AuthProvider({ children }) {
     }
   }, [user])
 
-  const login = async (email, password) => {
+  const login = async (email, _password) => {
     setLoading(true)
     try {
-      // Simulación de autenticación (o llamada al backend / json-server)
       const mockUser = {
         id: 'usr-1',
         name: email.split('@')[0],
