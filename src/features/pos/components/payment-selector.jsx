@@ -11,7 +11,7 @@ export function PaymentSelector({ total = 0, onMethodChange }) {
 
   return (
     <div className="payment-selector">
-      <h4>Método de Cobro</h4>
+      <h4>Método de Cobro (Total: ${total.toFixed(2)})</h4>
       <div className="payment-buttons">
         {methods.map((m) => (
           <button

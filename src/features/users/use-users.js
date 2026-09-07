@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { usersService } from './users-service'
 
 export function useUsers() {
@@ -6,22 +6,27 @@ export function useUsers() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchUsers = useCallback(async () => {
-    setLoading(true)
-    try {
-      const data = await usersService.getAll()
-      setUsers(Array.isArray(data) ? data : [])
-      setError(null)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    let isMounted = true
+    usersService
+      .getAll()
+      .then((data) => {
+        if (isMounted) {
+          setUsers(Array.isArray(data) ? data : [])
+          setError(null)
+          setLoading(false)
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
+      })
+    return () => {
+      isMounted = false
     }
   }, [])
-
-  useEffect(() => {
-    fetchUsers()
-  }, [fetchUsers])
 
   const createUser = async (userData) => {
     const created = await usersService.create(userData)
@@ -40,5 +45,5 @@ export function useUsers() {
     setUsers((prev) => prev.filter((u) => u.id !== id))
   }
 
-  return { users, loading, error, refetch: fetchUsers, createUser, updateUser, deleteUser }
+  return { users, loading, error, createUser, updateUser, deleteUser }
 }

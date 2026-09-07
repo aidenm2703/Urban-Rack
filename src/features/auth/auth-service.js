@@ -1,8 +1,7 @@
-import { api } from '@/shared/services/api-client'
+import { api } from '@/services/api-client'
 
 export const authService = {
-  login: async (email, password) => {
-    // Consulta a usuarios en json-server o fallback
+  login: async (email) => {
     const users = await api.get(`/users?email=${encodeURIComponent(email)}`).catch(() => [])
     if (Array.isArray(users) && users.length > 0) {
       return users[0]

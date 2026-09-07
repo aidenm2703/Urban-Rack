@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { productsAdminService } from './products-service'
 
 export function useProductsAdmin() {
@@ -6,22 +6,27 @@ export function useProductsAdmin() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchProducts = useCallback(async () => {
-    setLoading(true)
-    try {
-      const data = await productsAdminService.getAll()
-      setProducts(Array.isArray(data) ? data : [])
-      setError(null)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    let isMounted = true
+    productsAdminService
+      .getAll()
+      .then((data) => {
+        if (isMounted) {
+          setProducts(Array.isArray(data) ? data : [])
+          setError(null)
+          setLoading(false)
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
+      })
+    return () => {
+      isMounted = false
     }
   }, [])
-
-  useEffect(() => {
-    fetchProducts()
-  }, [fetchProducts])
 
   const createProduct = async (productData) => {
     const created = await productsAdminService.create(productData)
@@ -44,7 +49,6 @@ export function useProductsAdmin() {
     products,
     loading,
     error,
-    refetch: fetchProducts,
     createProduct,
     updateProduct,
     deleteProduct,

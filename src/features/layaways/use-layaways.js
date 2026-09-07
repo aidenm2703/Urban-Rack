@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { layawaysService } from './layaways-service'
 
 export function useLayaways() {
@@ -6,22 +6,27 @@ export function useLayaways() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchLayaways = useCallback(async () => {
-    setLoading(true)
-    try {
-      const data = await layawaysService.getAll()
-      setLayaways(Array.isArray(data) ? data : [])
-      setError(null)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    let isMounted = true
+    layawaysService
+      .getAll()
+      .then((data) => {
+        if (isMounted) {
+          setLayaways(Array.isArray(data) ? data : [])
+          setError(null)
+          setLoading(false)
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
+      })
+    return () => {
+      isMounted = false
     }
   }, [])
-
-  useEffect(() => {
-    fetchLayaways()
-  }, [fetchLayaways])
 
   const addInstallment = async (layawayId, amount, method = 'Efectivo') => {
     const layaway = layaways.find((l) => l.id === layawayId)
@@ -65,7 +70,6 @@ export function useLayaways() {
     layaways,
     loading,
     error,
-    refetch: fetchLayaways,
     addInstallment,
     settleLayaway,
     cancelLayaway,

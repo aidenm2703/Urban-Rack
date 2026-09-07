@@ -8,7 +8,6 @@ export function useMovements() {
 
   useEffect(() => {
     let isMounted = true
-    setLoading(true)
 
     movementsService
       .getAll()
@@ -16,13 +15,14 @@ export function useMovements() {
         if (isMounted) {
           setMovements(Array.isArray(data) ? data : [])
           setError(null)
+          setLoading(false)
         }
       })
       .catch((err) => {
-        if (isMounted) setError(err.message)
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
       })
 
     return () => {

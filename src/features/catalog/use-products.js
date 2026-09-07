@@ -21,7 +21,6 @@ export function useProducts() {
 
   useEffect(() => {
     let isMounted = true
-    setLoading(true)
 
     productsService
       .getAll()
@@ -29,13 +28,14 @@ export function useProducts() {
         if (isMounted) {
           setAllProducts(Array.isArray(data) ? data : [])
           setError(null)
+          setLoading(false)
         }
       })
       .catch((err) => {
-        if (isMounted) setError(err.message)
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
       })
 
     return () => {
@@ -47,7 +47,6 @@ export function useProducts() {
   const filteredProducts = useMemo(() => {
     return allProducts
       .filter((product) => {
-        // Filtro por término de búsqueda
         if (debouncedSearch) {
           const term = debouncedSearch.toLowerCase()
           const matchName = product.name?.toLowerCase().includes(term)
@@ -56,12 +55,10 @@ export function useProducts() {
           if (!matchName && !matchCategory && !matchBrand) return false
         }
 
-        // Filtro por categoría
         if (filters.category && product.category?.toLowerCase() !== filters.category.toLowerCase()) {
           return false
         }
 
-        // Filtro por talle
         if (filters.size) {
           const hasSize = product.variants?.some(
             (v) => v.size?.toLowerCase() === filters.size.toLowerCase() && (v.stock || 0) > 0
@@ -69,7 +66,6 @@ export function useProducts() {
           if (!hasSize) return false
         }
 
-        // Filtro por color
         if (filters.color) {
           const hasColor = product.variants?.some(
             (v) => v.color?.toLowerCase().includes(filters.color.toLowerCase())
@@ -77,7 +73,6 @@ export function useProducts() {
           if (!hasColor) return false
         }
 
-        // Filtro solo stock disponible
         if (filters.onlyInStock) {
           const totalStock = product.variants?.reduce((sum, v) => sum + (v.stock || 0), 0) ?? 0
           if (totalStock <= 0) return false
@@ -89,7 +84,6 @@ export function useProducts() {
         if (filters.sortBy === 'price-low') return a.price - b.price
         if (filters.sortBy === 'price-high') return b.price - a.price
         if (filters.sortBy === 'name') return a.name.localeCompare(b.name)
-        // 'featured' por defecto
         return (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
       })
   }, [allProducts, debouncedSearch, filters])

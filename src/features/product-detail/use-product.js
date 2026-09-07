@@ -10,24 +10,24 @@ export function useProduct(id) {
   useEffect(() => {
     if (!id) return
     let isMounted = true
-    setLoading(true)
 
     productsService
       .getById(id)
       .then((data) => {
         if (isMounted) {
           setProduct(data)
-          if (data.variants && data.variants.length > 0) {
+          if (data?.variants && data.variants.length > 0) {
             setSelectedVariant(data.variants[0])
           }
           setError(null)
+          setLoading(false)
         }
       })
       .catch((err) => {
-        if (isMounted) setError(err.message)
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
       })
 
     return () => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { apiClient } from '../services/api-client'
 
 export function useFetch(endpoint, options = {}) {
@@ -6,24 +6,29 @@ export function useFetch(endpoint, options = {}) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchData = useCallback(async () => {
-    setLoading(true)
-    setError(null)
-    try {
-      const result = await apiClient(endpoint, options)
-      setData(result)
-    } catch (err) {
-      setError(err.message || 'Error al obtener datos')
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    let isMounted = true
+    if (endpoint) {
+      apiClient(endpoint, options)
+        .then((result) => {
+          if (isMounted) {
+            setData(result)
+            setError(null)
+            setLoading(false)
+          }
+        })
+        .catch((err) => {
+          if (isMounted) {
+            setError(err.message || 'Error al obtener datos')
+            setLoading(false)
+          }
+        })
     }
+    return () => {
+      isMounted = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endpoint])
 
-  useEffect(() => {
-    if (endpoint) {
-      fetchData()
-    }
-  }, [fetchData, endpoint])
-
-  return { data, loading, error, refetch: fetchData }
+  return { data, loading, error }
 }

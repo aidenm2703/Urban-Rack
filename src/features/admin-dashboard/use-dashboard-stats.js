@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { api } from '@/shared/services/api-client'
+import { api } from '@/services/api-client'
 
 export function useDashboardStats() {
   const [stats, setStats] = useState(null)
@@ -8,7 +8,6 @@ export function useDashboardStats() {
 
   useEffect(() => {
     let isMounted = true
-    setLoading(true)
 
     Promise.all([
       api.get('/sales').catch(() => []),
@@ -56,8 +55,9 @@ export function useDashboardStats() {
           })
         }
         setAlerts(generatedAlerts)
+        setLoading(false)
       })
-      .finally(() => {
+      .catch(() => {
         if (isMounted) setLoading(false)
       })
 

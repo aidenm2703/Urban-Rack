@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react'
-import { api } from '@/shared/services/api-client'
+import { api } from '@/services/api-client'
 
 export function useReports() {
-  const [dateRange, setDateRange] = useState({
-    startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    endDate: new Date().toISOString().split('T')[0],
+  const [dateRange, setDateRange] = useState(() => {
+    const d = new Date()
+    d.setDate(d.getDate() - 7)
+    return {
+      startDate: d.toISOString().split('T')[0],
+      endDate: new Date().toISOString().split('T')[0],
+    }
   })
   const [reportsData, setReportsData] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let isMounted = true
-    setLoading(true)
 
     api
       .get('/sales')
@@ -25,12 +28,13 @@ export function useReports() {
           itemsCount: s.items?.length || 0,
         }))
         setReportsData(rows)
+        setLoading(false)
       })
       .catch(() => {
-        if (isMounted) setReportsData([])
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
+        if (isMounted) {
+          setReportsData([])
+          setLoading(false)
+        }
       })
 
     return () => {

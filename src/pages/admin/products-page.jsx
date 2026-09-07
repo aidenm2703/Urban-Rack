@@ -1,47 +1,97 @@
-import { useState } from 'react'
-import { useProductsAdmin } from '@/features/products/use-products-admin'
-import { ProductTable } from '@/features/products/components/product-table'
-import { ProductForm } from '@/features/products/components/product-form'
-import { StockEntryForm } from '@/features/products/components/stock-entry-form'
-import { Button } from '@/shared/components/ui/button'
+import { useState, useEffect } from 'react'
+import { productsService } from '@/services/products-service'
+import { ProductTable } from '@/components/admin/products/product-table'
+import { ProductForm } from '@/components/admin/products/product-form'
+import { StockEntryForm } from '@/components/admin/products/stock-entry-form'
 
 export function ProductsPage() {
-  const { products, loading, createProduct, updateProduct, deleteProduct } = useProductsAdmin()
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [editingProduct, setEditingProduct] = useState(null)
   const [showStockModal, setShowStockModal] = useState(false)
 
+  const reloadProducts = () => {
+    productsService.getAll().then((list) => setProducts(list))
+  }
+
+  useEffect(() => {
+    let isMounted = true
+    productsService.getAll().then((list) => {
+      if (isMounted) {
+        setProducts(list)
+        setLoading(false)
+      }
+    })
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  const handleSaveProduct = async (productData) => {
+    if (productData.id) {
+      await productsService.update(productData.id, productData)
+    } else {
+      await productsService.create(productData)
+    }
+    reloadProducts()
+  }
+
+  const handleDeleteProduct = async (id) => {
+    if (window.confirm('¿Seguro que deseas eliminar este producto?')) {
+      await productsService.delete(id)
+      reloadProducts()
+    }
+  }
+
   return (
-    <div className="admin-products-page">
-      <div className="page-header">
-        <h1>Gestión de Productos</h1>
-        <div className="page-actions">
-          <Button onClick={() => setEditingProduct({})}>+ Nuevo Producto</Button>
-          <Button variant="secondary" onClick={() => setShowStockModal(true)}>
+    <div className="space-y-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-text-main">Gestión de Productos</h1>
+          <p className="text-sm text-text-muted">Administra el catálogo de ropa y accesorios</p>
+        </div>
+        <div className="flex items-center space-x-2">
+          <button
+            type="button"
+            onClick={() => setEditingProduct({})}
+            className="px-4 py-2 text-sm font-semibold bg-primary hover:bg-primary-hover text-text-inverted rounded transition-colors"
+          >
+            + Nuevo Producto
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowStockModal(true)}
+            className="px-4 py-2 text-sm font-semibold bg-secondary hover:bg-secondary/80 text-text-main rounded transition-colors"
+          >
             + Entrada Mercadería
-          </Button>
+          </button>
         </div>
       </div>
 
       {loading ? (
-        <p>Cargando productos...</p>
+        <div className="p-6 text-center text-text-muted">Cargando productos...</div>
       ) : (
         <ProductTable
           products={products}
           onEdit={(prod) => setEditingProduct(prod)}
-          onDelete={deleteProduct}
+          onDelete={handleDeleteProduct}
         />
       )}
 
       {editingProduct && (
         <ProductForm
           initialData={editingProduct}
-          onSave={editingProduct.id ? updateProduct : createProduct}
+          onSave={handleSaveProduct}
           onClose={() => setEditingProduct(null)}
         />
       )}
 
       {showStockModal && (
-        <StockEntryForm onClose={() => setShowStockModal(false)} />
+        <StockEntryForm
+          products={products}
+          onClose={() => setShowStockModal(false)}
+          onSuccess={reloadProducts}
+        />
       )}
     </div>
   )
