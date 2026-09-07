@@ -13,13 +13,15 @@ export function Navbar() {
         <nav className="navbar-links">
           <Link to="/">Inicio</Link>
           <Link to="/catalogo">Catálogo</Link>
-          {isAuthenticated && user?.role === 'admin' && (
-            <Link to="/dashboard">Panel Admin</Link>
-          )}
         </nav>
         <div className="navbar-actions">
           {isAuthenticated ? (
             <div className="navbar-user">
+              {user?.role === 'admin' && (
+                <Link to="/dashboard" className="btn-admin-link">
+                  Panel Admin
+                </Link>
+              )}
               <span>Hola, {user.name}</span>
               <button type="button" onClick={logout} className="btn-logout">
                 Salir

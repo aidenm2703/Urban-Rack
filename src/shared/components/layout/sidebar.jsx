@@ -6,16 +6,16 @@ export function Sidebar() {
 
   const links = [
     { to: '/dashboard', label: 'Dashboard' },
+    { to: '/pos', label: 'Punto de Venta (POS)' },
+    { to: '/caja', label: 'Caja' },
+    { to: '/apartados', label: 'Apartados' },
+    { to: '/devoluciones', label: 'Devoluciones' },
+    { to: '/ventas', label: 'Ventas' },
     { to: '/productos', label: 'Productos' },
     { to: '/inventario', label: 'Inventario' },
     { to: '/movimientos', label: 'Movimientos' },
-    { to: '/apartados', label: 'Apartados' },
-    { to: '/pos', label: 'Punto de Venta (POS)' },
-    { to: '/ventas', label: 'Ventas' },
-    { to: '/caja', label: 'Caja' },
-    { to: '/devoluciones', label: 'Devoluciones' },
     { to: '/reportes', label: 'Reportes' },
-    ...(user?.role === 'admin' ? [{ to: '/usuarios', label: 'Usuarios' }] : []),
+    { to: '/usuarios', label: 'Usuarios' },
     { to: '/perfil', label: 'Mi Perfil' },
   ]
 
@@ -23,7 +23,7 @@ export function Sidebar() {
     <aside className="sidebar-root">
       <div className="sidebar-brand">
         <h2>Urban-Rack</h2>
-        <span className="sidebar-role">{user?.role || 'Vendedor'}</span>
+        <span className="sidebar-role">{user?.role || 'Admin'}</span>
       </div>
       <nav className="sidebar-nav">
         {links.map((link) => (

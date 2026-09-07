@@ -37,22 +37,20 @@ export function AppRouter() {
 
       {/* Rutas Protegidas (Panel Operativo y Administrativo) */}
       <Route element={<ProtectedRoute />}>
-        <Route element={<AdminLayout />}>
-          <Route path="/pos" element={<PosPage />} />
-          <Route path="/apartados" element={<LayawaysPage />} />
-          <Route path="/caja" element={<CashboxPage />} />
-          <Route path="/devoluciones" element={<ReturnsPage />} />
-          <Route path="/perfil" element={<ProfilePage />} />
-
-          {/* Rutas exclusivas para rol Admin */}
-          <Route element={<RoleGuard allowedRoles={['admin']} />}>
+        <Route element={<RoleGuard allowedRoles={['admin']} fallbackTo="/" />}>
+          <Route element={<AdminLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/pos" element={<PosPage />} />
+            <Route path="/apartados" element={<LayawaysPage />} />
+            <Route path="/caja" element={<CashboxPage />} />
+            <Route path="/devoluciones" element={<ReturnsPage />} />
             <Route path="/productos" element={<ProductsPage />} />
             <Route path="/inventario" element={<InventoryPage />} />
             <Route path="/movimientos" element={<MovementsPage />} />
             <Route path="/ventas" element={<SalesPage />} />
             <Route path="/reportes" element={<ReportsPage />} />
             <Route path="/usuarios" element={<UsersPage />} />
+            <Route path="/perfil" element={<ProfilePage />} />
           </Route>
         </Route>
       </Route>

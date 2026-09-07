@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '@/shared/hooks/use-auth'
 
-export function RoleGuard({ allowedRoles = [], fallbackTo = '/dashboard' }) {
+export function RoleGuard({ allowedRoles = [], fallbackTo = '/' }) {
   const { user, isAuthenticated } = useAuth()
 
   if (!isAuthenticated) {

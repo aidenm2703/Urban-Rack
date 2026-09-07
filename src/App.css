@@ -77,7 +77,8 @@
   color: #f59e0b;
 }
 
-.btn-login, .btn-logout {
+.btn-login,
+.btn-logout {
   background: transparent;
   color: #ffffff;
   border: 1px solid #374151;
@@ -86,7 +87,8 @@
   cursor: pointer;
 }
 
-.btn-login:hover, .btn-logout:hover {
+.btn-login:hover,
+.btn-logout:hover {
   background: #1f2937;
 }
 
@@ -172,21 +174,69 @@
   transition: all 0.2s;
 }
 
-.btn-sm { padding: 0.35rem 0.7rem; font-size: 0.85rem; }
-.btn-md { padding: 0.5rem 1rem; font-size: 0.95rem; }
-.btn-lg { padding: 0.75rem 1.5rem; font-size: 1.1rem; }
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+}
 
-.btn-primary { background-color: #111827; color: #ffffff; }
-.btn-primary:hover { background-color: #1f2937; }
-.btn-secondary { background-color: #e5e7eb; color: #1f2937; }
-.btn-secondary:hover { background-color: #d1d5db; }
-.btn-danger { background-color: #ef4444; color: #ffffff; }
-.btn-danger:hover { background-color: #dc2626; }
-.btn-success { background-color: #10b981; color: #ffffff; }
-.btn-success:hover { background-color: #059669; }
-.btn-outline { background-color: transparent; border-color: #d1d5db; }
-.btn-outline:hover { background-color: #f3f4f6; }
-.btn-block { width: 100%; }
+.btn-md {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background-color: #111827;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #1f2937;
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.btn-success {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #059669;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: #d1d5db;
+}
+
+.btn-outline:hover {
+  background-color: #f3f4f6;
+}
+
+.btn-block {
+  width: 100%;
+}
 
 .btn-whatsapp {
   background-color: #25d366;
@@ -194,7 +244,10 @@
   padding: 0.75rem 1.5rem;
   font-weight: bold;
 }
-.btn-whatsapp:hover { background-color: #128c7e; }
+
+.btn-whatsapp:hover {
+  background-color: #128c7e;
+}
 
 /* Badges */
 .badge {
@@ -204,10 +257,26 @@
   font-size: 0.75rem;
   font-weight: 600;
 }
-.badge-default { background: #e5e7eb; color: #374151; }
-.badge-success { background: #d1fae5; color: #065f46; }
-.badge-warning { background: #fef3c7; color: #92400e; }
-.badge-danger { background: #fee2e2; color: #991b1b; }
+
+.badge-default {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.badge-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
 
 /* Inputs */
 .input-group {
@@ -216,17 +285,20 @@
   gap: 0.35rem;
   margin-bottom: 1rem;
 }
+
 .input-label {
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
 }
+
 .input-control {
   padding: 0.5rem 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   outline: none;
 }
+
 .input-control:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
@@ -242,6 +314,7 @@
   justify-content: center;
   z-index: 50;
 }
+
 .modal-container {
   background: #ffffff;
   border-radius: 8px;
@@ -250,12 +323,14 @@
   padding: 1.5rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
+
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
+
 .modal-close-btn {
   background: transparent;
   border: none;
@@ -270,15 +345,19 @@
   border-radius: 8px;
   border: 1px solid #e5e7eb;
 }
+
 .data-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
 }
-.data-table th, .data-table td {
+
+.data-table th,
+.data-table td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #e5e7eb;
 }
+
 .data-table th {
   background-color: #f9fafb;
   font-size: 0.85rem;
@@ -293,17 +372,20 @@
   gap: 1rem;
   margin: 1.5rem 0;
 }
+
 .stat-card {
   background: #ffffff;
   padding: 1.25rem;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
 }
+
 .stat-card-value {
   font-size: 1.75rem;
   font-weight: 700;
   margin: 0.5rem 0;
 }
+
 .stat-card-alert {
   border-left: 4px solid #ef4444;
 }
@@ -315,6 +397,7 @@
   gap: 1.5rem;
   margin-top: 1rem;
 }
+
 .pos-cart-area {
   background: #ffffff;
   padding: 1rem;

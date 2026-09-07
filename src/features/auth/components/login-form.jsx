@@ -24,7 +24,7 @@ export function LoginForm() {
       if (user.role === 'admin') {
         navigate('/dashboard')
       } else {
-        navigate('/pos')
+        navigate('/catalogo')
       }
     } catch (err) {
       setError(err.message || 'Credenciales inválidas')

@@ -1,0 +1,324 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffffff;
+  /* Alta luminosidad para contrastar */
+  color: #111111;
+  /* Tipografía oscura y fuerte */
+  overflow-x: hidden;
+}
+
+/* 1. Hero Banner Promocional */
+.heroSection {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  /* Altura de impacto */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xl, 4rem);
+  background-color: #000;
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  background-image: repeating-linear-gradient(45deg,
+      #2a2a2a,
+      #2a2a2a 10px,
+      #222 10px,
+      #222 20px);
+  opacity: 0.6;
+  /* Para que el texto sea legible */
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 800px;
+  gap: var(--spacing-md, 1.5rem);
+}
+
+.heroBadge {
+  background-color: #ff0000;
+  /* Acento vibrante */
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0.5rem 1rem;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: #f0f0f0;
+  font-weight: 500;
+  margin: 0;
+  max-width: 600px;
+}
+
+.heroCta {
+  margin-top: 1rem;
+  background-color: #fff;
+  color: #000;
+  font-weight: 800;
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  border-radius: 0;
+  /* Bordes cuadrados estilo urbano/brutalista */
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.heroCta:hover {
+  background-color: #ff0000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* 2. Navegación Rápida por Categorías */
+.categorySection {
+  padding: var(--spacing-lg, 3rem) var(--spacing-md, 2rem);
+  background-color: #f5f5f5;
+  /* Separación sutil del hero */
+}
+
+.categoryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.categoryPill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  border-radius: 100px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categoryPill:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  background-color: #111;
+  color: #fff;
+}
+
+.categoryImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+/* 3. Carrusel / Grilla de Novedades */
+.arrivalsSection {
+  padding: var(--spacing-xl, 5rem) var(--spacing-md, 2rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.viewAllLink {
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.viewAllLink:hover {
+  border-color: #ff0000;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+}
+
+.productImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* Cuadrado para zapatillas/ropa */
+  background-color: #f9f9f9;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.productBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  background-color: #000;
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.productImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0;
+  transition: transform 0.5s ease;
+}
+
+.productCard:hover .productImagePlaceholder {
+  transform: scale(1.05);
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.productBrand {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.productModel {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.productPrice {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff0000;
+  margin-top: 0.5rem;
+}
+
+/* 4. Cinta de Confianza y Operativa */
+.trustBanner {
+  background-color: #111;
+  color: #fff;
+  padding: 2.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.trustIcon {
+  font-size: 2.5rem;
+  filter: grayscale(100%) brightness(200%);
+  /* Ajuste estilizado para emojis/íconos temporales */
+}
+
+.trustText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.trustText strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.trustText span {
+  font-size: 0.9rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 2rem;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+
+  .trustBanner {
+    grid-template-columns: 1fr;
+    justify-items: flex-start;
+  }
+}
